@@ -1,0 +1,30 @@
+usuario@servidor:~$ timedatectl
+               Local time: sex 2024-01-26 10:01:17 UTC
+           Universal time: sex 2024-01-26 10:01:17 UTC
+                 RTC time: sex 2024-01-26 10:01:18
+                Time zone: Etc/UTC (UTC, +0000)
+System clock synchronized: no
+              NTP service: active
+          RTC in local TZ: no
+
+------------------------------------
+
+usuario@servidor:~$ timedatectl list-timezones | grep Paulo
+America/Sao_Paulo
+------------------------------------
+
+usuario@servidor:~$ sudo timedatectl set-timezone America/Sao_Paulo
+[sudo] password for usuario:
+
+------------------------------------
+
+usuario@servidor:~$ timedatectl
+               Local time: sex 2024-01-26 07:04:06 -03
+           Universal time: sex 2024-01-26 10:04:06 UTC
+                 RTC time: sex 2024-01-26 10:04:06
+                Time zone: America/Sao_Paulo (-03, -0300)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+------------------------------------
+
