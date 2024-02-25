@@ -457,3 +457,26 @@ Permite que você execute comandos de shell arbitrários em um commit.
 
 ----------------------------------------------------------------------------
 
+###################
+#                 #
+# git cherry-pick #
+#                 #
+###################
+
+O que é o Git Cherry Pick?
+
+O cherry-pick é um dos comandos do git que nos permite levar partes específicas da nossa árvore de commits para uma branch desejada.
+
+Lembrando que o cherry-pick é um comando muito útil, quando bem utilizado.
+
+Porém, ele não pode substituir o git merge e o git rebase, por exemplo.
+
+Cada um possui uma situação que se encaixa melhor. 
+
+Use o cherry-pick apenas em último caso, com cuidado para não duplicar commits na sua linha do tempo, de forma desnecessária. 
+
+Use com moderação!
+
+Exemplo:
+git cherry-pick 851a2508b93007e145b132dae2c69a7165734a8a
+
