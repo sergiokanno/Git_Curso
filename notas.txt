@@ -71,6 +71,7 @@ git push --delete origin <nome da branch>
 Carregando o repositório remoto para local:
 ==========================================
 git pull
+git pull --rebase
 
 
 Ver link entre repositório local e remoto:
@@ -397,6 +398,62 @@ Aviso:
 Como a alteração do seu histórico de commits pode dificultar as coisas para todos os outros que usam o repositório, 
 é considerada uma prática inadequada fazer a troca de base de commits quando você já efetuou push deles para um repositório.
 
+
+Faz rebase da main para branch atual:
+====================================
+git rebase main
+
+Desfaz rebase mal sucedido:
+==========================
+git rebase --abort
+
+Retoma rebase mal sucedido:
+==========================
+git rebase --continue
+
+Fazendo rebase a partir do repositório remoto:
+=============================================
+git pull --rebase
+
+Permite juntar os commits em um só:
+==================================
+git rebase --interactive HEAD~7
+
+Comandos disponíveis ao fazer rebase interactive:
+-------------------------------------------------
+
+pick
+====
+pick significa simplesmente que o commit está incluído. 
+A reorganização da ordem dos comandos pick altera a ordem dos commits quando a troca de base está em andamento. 
+Se você optar por não incluir um commit, será preciso excluir a linha toda.
+
+reword
+======
+O comando reword é semelhante a pick, mas depois que você usá-lo, 
+o processo de troca de base será colocado em pausa e dará a você a chance de alterar a mensagem de commit. 
+As alterações feitas pelo commit não são afetadas.
+
+edit
+====
+Se você optar por edit um commit, terá a chance de alterar o commit, o que significa que pode adicionar ou alterar o commit por completo.
+Também é possível fazer mais commits antes de continuar com o rebase. 
+Isso permite que você divida um commit grande em commits menores ou remova alterações equivocadas feitas em um commit.
+
+squash
+======
+Esse comando permite combinar dois ou mais commits em um único commit. 
+Um commit é combinado por squash no commit acima dele. 
+O Git permite que você grave uma nova mensagem do commit descrevendo ambas as alterações.
+
+fixup
+=====
+Isso é semelhante a squash, mas o commit a ser mesclado tem a mensagem descartada.
+O commit simplesmente sofre merge no commit acima dele, e a mensagem do commit anterior é usado para descrever ambas as alterações.
+
+exec
+====
+Permite que você execute comandos de shell arbitrários em um commit.
 
 ----------------------------------------------------------------------------
 
