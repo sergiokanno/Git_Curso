@@ -1,0 +1,368 @@
+Instalar Git no Ubuntu
+======================
+Instalar Git na VM azure (Ubuntu):
+=================================
+sudo apt-add-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+
+----------------------------------------------------------------------------
+####################
+#                  #
+#  Configurar Git  #
+#                  #
+####################
+git config --global user.name "nome"
+git config --global user.email "e-mail"
+
+Definindo nano como editor padrão de texto associado ao Git:
+==========================================================
+git config --global core.editor "nano"
+
+----------------------------------------------------------------------------
+
+################################
+#                              #
+#  Criando repositório remoto  #
+#                              #
+################################
+
+Criar a new repository remoto via linha de comando:
+==================================================
+echo "# numero-secreto" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/<usercod>/<projectname>.git
+git remote add origin git@github.com:<usercod>/<projectname>.git
+git push -u origin main
+
+
+#################################
+#                               #
+#  Carregar repositório remoto  #
+#                               #
+#################################
+
+Carregar um repositório externo via Git:
+=======================================
+git remote add origin https://github.com/<usercod>/<projectname>.git
+git branch -M main
+git push -u origin main
+
+
+Carregando uma branch para repositório remoto:
+=============================================
+git push -u origin <nome da branch>
+
+
+Excluindo branch no repositório remoto:
+=======================================
+git push --delete origin <nome da branch>
+
+
+Carregando o repositório remoto para local:
+==========================================
+git pull
+
+
+Ver link entre repositório local e remoto:
+==========================================
+git remote -v
+
+
+Removendo link com o repositório remoto:
+=======================================
+git remote remove origin
+
+
+Clonando um projeto do Github:
++=======================================================
+git clone https://github.com/DevMasterTeam/Udemy-Git.git
+
+
+----------------------------------------------------------------------------
+
+#################################
+#                               #
+#  Montando repositório local   #
+#                               #
+#################################
+
+Convert a local directory into a repository
+===========================================
+git init
+
+
+Status do repositório local
+===========================
+git status
+
+
+Git deletando arquivos untracked:
+--------------------------------
+git clean -f
+
+
+Adicionando arquivos na Staging Area:
+=====================================
+git add .
+git add <arquivo específico>
+
+
+Removendo arquivo(s) da stage area:
+===================================
+git rm --cached README.md
+git rm --cached -r .
+
+
+Adicionando arquivos staged ao Repositório Local:
+================================================
+git commit -m "descrição resumida do commit"
+
+
+Atualizando diretório com arquivos do Repositório Local:
+=======================================================
+git checkout .
+
+
+git diff: Exibe todas as diferenças entre sua cópia local e o índice sincronizado:
+=================================================================================
+git diff
+
+
+git diff –cached: Exibe todas as diferenças entre o índice sincronizado e o último commit:
+=========================================================================================
+git diff --staged
+
+
+git diff HEAD: Exibe todas as diferenças entre sua cópia local e o último commit realizado:
+==========================================================================================
+git diff HEAD
+
+
+O comando “git reset --soft” faz o repositório apontar para o commit especificado e
+reverte o(s) arquivo(s) modificado(s) para staged.:
+===================================================================================
+git reset --soft HEAD~1
+
+
+O comando “git reset --mixed” faz o repositório apontar para o commit especificado, 
+assim como o comando “git reset --soft”,
+porém reverte o(s) arquivo(s) modificado(s) para unstaged.
+===================================================================================
+git reset --mixed HEAD~1
+
+
+O comando “git reset --hard” faz o repositório apontar para o commit especificado, 
+assim como os demais comandos “git reset”, 
+porém descarta todos os arquivos staged bem como os arquivos unstaged.
+===================================================================================
+git reset --hard HEAD~1
+
+
+----------------------------------------------------------------------------
+
+################################
+#                              #
+#  Exibindo / Atualizando LOG  #
+#                              #
+################################
+
+Log do Git no repositório local:
+===============================
+git log <nome da branch> -<1 a 9>
+git log --oneline <nome da branch> -<1 a 9>
+
+
+Log do repositório filtrando a palavra "Git.txt" dos comentários dos commits:
+============================================================================
+git log --grep="Git.txt"
+
+
+Mostra Log de um específico commit:
+==================================
+git show <hash do commit>
+
+
+Alterando mensagem do ultimo commit:
+===================================
+git commit --amend -m "Alterações do arquivo Git.txt - Versão 1.1"
+
+
+Volta a situação do repositório local na posição do commit informado:
+====================================================================
+git checkout <hash do commit>
+
+
+Revertendo o commit associado a uma tag ou hash do commit:
+=========================================================
+git revert <tagname>
+git revert <hash do commit>
+
+----------------------------------------------------------------------------
+
+##################################################
+#                                                #
+#  Informar ao Git parar de rastrear um arquivo  #
+#                                                #
+##################################################
+
+git update-index --skip-worktree <file>
+
+Obs.:
+Para executar este comando, o arquivo precisa já estar no repositório local.
+
+Listando os arquivos que o Git parou de rastrear:
+================================================
+git ls-files -v . | grep ^S
+
+Explanation:
+===========
+git ls-files . lists all files in the repo (assuming you are in the root folder). 
+-v makes the output verbose, meaning that it will abbreviate the file status with a letter in front of the filename. 
+The options are:
+
+H cached
+S skip-worktree
+M unmerged
+R removed/deleted
+C modified/changed
+K to be killed
+? other
+
+##################################################
+#                                                #
+#  Informar ao Git voltar a rastrear um arquivo  #
+#                                                #
+##################################################
+
+git update-index --no-skip-worktree <file>
+
+
+----------------------------------------------------------------------------
+
+###############
+#             #
+#  Git stash  #
+#             #
+###############
+
+git stash arquiva (ou faz o stash) de alterações que você fez na cópia de trabalho durante um determinado período,
+para que você possa trabalhar em outra coisa, depois voltar e fazer a reaplicação mais tarde. 
+O stashing é útil quando você precisa alternar com rapidez o contexto e trabalhar em outra coisa, 
+mas está no meio da alteração de código e não está pronto para fazer commit.
+
+Para contextualizar melhor, é uma boa prática anotar uma descrição para seus stashes, usando o git stash save "mensagem".
+
+
+git stash save "mensagem"
+
+git stash list
+stash@{0}: On main: add style to our site
+stash@{1}: WIP on main: 5002d47 our new homepage
+stash@{2}: WIP on main: 5002d47 our new homepage
+
+git stash apply
+
+git stash apply stash@{2}
+
+git stash drop stash@{1}
+
+git stash branch <nova_branch> stash@{2}
+
+
+----------------------------------------------------------------------------
+################
+#              #
+#    BRANCH    #
+#              #
+################
+
+Criando uma Branch:
+==================
+git branch <nome da branch>
+git switch -c <nome da branch>
+git checkout -b <nome da branch>
+
+
+Mudando para uma branch:
+========================
+git switch <nome da branch>
+git checkout <nome da branch>
+
+
+Alternando entre branchs:
+========================
+git switch -
+
+
+Definindo branch main:
+=====================
+git branch -M main
+
+
+Renomeando branch <nome atual> para <nome novo>:
+===============================================
+git branch -m <nome atual> <nome novo>
+
+
+Listar branches do repositório local:
+====================================
+git branch
+
+
+Listando as branches não mergeadas:
+==================================
+git branch --no-merged
+
+
+Merge da branch <nome da branch> na main:
+================================
+git merge <nome da branch>
+
+
+Listando as branches mergeadas:
+===============================
+git branch --merged
+
+
+Excluindo Branch do repositório local:
+=====================================
+git branch -d <nome da branch>
+git branch -D <nome da branch>
+
+
+Excluindo branch no repositório remoto:
+=======================================
+git push --delete origin <nome da branch>
+
+
+----------------------------------------------------------------------------
+################
+#              #
+#     TAGS     #
+#              #
+################
+
+Criando tags:
+============
+
+git tag <tagname> <hash do commit>
+
+git tag -a -m "mensagem" <tagname> <hash do commit>
+
+
+Listar as tags do repositório local:
+===================================
+git tag
+
+
+Removendo tags:
+==============
+git tag -d <tagname>
+
+git push --delete origin <tagname>
+
+----------------------------------------------------------------------------
