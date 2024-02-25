@@ -353,6 +353,8 @@ git tag <tagname> <hash do commit>
 
 git tag -a -m "mensagem" <tagname> <hash do commit>
 
+git push origin <tagname>
+
 
 Listar as tags do repositório local:
 ===================================
