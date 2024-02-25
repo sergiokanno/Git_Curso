@@ -52,6 +52,12 @@ git branch -M main
 git push -u origin main
 
 
+Carregamento forçado do repositório remoto:
+==========================================
+git push --force
+git push --force-with-lease
+
+
 Carregando uma branch para repositório remoto:
 =============================================
 git push -u origin <nome da branch>
