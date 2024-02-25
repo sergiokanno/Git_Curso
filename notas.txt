@@ -374,3 +374,29 @@ git tag -d <tagname>
 git push --delete origin <tagname>
 
 ----------------------------------------------------------------------------
+
+################
+#              #
+#  git rebase  #
+#              #
+################
+
+Sobre a troca de base do Git
+============================
+O comando git rebase permite alterar com facilidade uma variedade de commits, modificando o histórico do seu repositório. 
+É possível reordenar, editar ou combinar commits por squash.
+
+Normalmente, você usará git rebase para:
+
+- Editar mensagens anteriores do commit
+- Combinar vários commits em um
+- Excluir ou reverter commits que não são mais necessários
+
+Aviso: 
+=====
+Como a alteração do seu histórico de commits pode dificultar as coisas para todos os outros que usam o repositório, 
+é considerada uma prática inadequada fazer a troca de base de commits quando você já efetuou push deles para um repositório.
+
+
+----------------------------------------------------------------------------
+
